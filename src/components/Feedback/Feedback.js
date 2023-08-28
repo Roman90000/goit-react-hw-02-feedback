@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { Statistics } from './Statistics';
+import { Container, Button } from './Feedback.styled';
 
 export class Feedback extends Component {
   state = {
@@ -21,10 +23,9 @@ export class Feedback extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <h1>Please leave feedbeck</h1>
-
-        <button
+        <Button
           onClick={() =>
             this.setState(prevState => {
               return {
@@ -34,8 +35,8 @@ export class Feedback extends Component {
           }
         >
           Good
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() =>
             this.setState(prevState => {
               return {
@@ -45,8 +46,8 @@ export class Feedback extends Component {
           }
         >
           Neutral
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() =>
             this.setState(prevState => {
               return {
@@ -56,28 +57,19 @@ export class Feedback extends Component {
           }
         >
           Bad
-        </button>
+        </Button>
 
         <h2>Statistics</h2>
 
-        <ul>
-          <li>
-            <b>Good: {this.state.good}</b>
-          </li>
-          <li>
-            <b>Neutral: {this.state.neutral}</b>
-          </li>
-          <li>
-            <b>Bad: {this.state.bad}</b>
-          </li>
-          <li>
-            <b>Total: {this.countTotalFeedback()}</b>
-          </li>
-          <li>
-            <b>Positive Feedback: {this.countPositiveFeedbackPercentage()}</b>
-          </li>
-        </ul>
-      </div>
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          total={this.countTotalFeedback()}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
+          message={'There is no feedback'}
+        />
+      </Container>
     );
   }
 }
