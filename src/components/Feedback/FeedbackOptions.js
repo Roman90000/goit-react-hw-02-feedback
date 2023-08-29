@@ -1,7 +1,9 @@
-export const FeedbackOptions = state => {
+import { Button } from './Feedback.styled';
+
+export const FeedbackOptions = options => {
   return (
     <div>
-      <button
+      <Button
         onClick={() =>
           this.setState(prevState => {
             return {
@@ -11,8 +13,8 @@ export const FeedbackOptions = state => {
         }
       >
         Good
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={() =>
           this.setState(prevState => {
             return {
@@ -22,8 +24,8 @@ export const FeedbackOptions = state => {
         }
       >
         Neutral
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={() =>
           this.setState(prevState => {
             return {
@@ -33,7 +35,7 @@ export const FeedbackOptions = state => {
         }
       >
         Bad
-      </button>
+      </Button>
     </div>
   );
 };

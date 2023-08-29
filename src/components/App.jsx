@@ -1,7 +1,7 @@
 import 'modern-normalize';
 
 import { Component } from 'react';
-import { Statistics } from './Feedback/Statistics';
+import { Statistics } from './Statistics/Statistics';
 import { Container, Button } from './Feedback/Feedback.styled';
 
 export class App extends Component {
@@ -24,6 +24,8 @@ export class App extends Component {
   }
 
   render() {
+    const total = this.countTotalFeedback();
+
     return (
       <Container>
         <h1>Please leave feedbeck</h1>
@@ -63,14 +65,17 @@ export class App extends Component {
 
         <h2>Statistics</h2>
 
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-          message={'There is no feedback'}
-        />
+        {total === 0 ? (
+          <h2>"No feedback given"</h2>
+        ) : (
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
+        )}
       </Container>
     );
   }
