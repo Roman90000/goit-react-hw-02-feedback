@@ -2,7 +2,8 @@ import 'modern-normalize';
 
 import { Component } from 'react';
 import { Statistics } from './Statistics/Statistics';
-import { Container, Button } from './Feedback/Feedback.styled';
+import { Container } from './Feedback/Feedback.styled';
+import { FeedbackOptions } from './Feedback/FeedbackOptions';
 
 export class App extends Component {
   state = {
@@ -23,45 +24,20 @@ export class App extends Component {
     );
   }
 
+  onLeaveFeedback = state =>
+    this.setState(prevState => ({ [state]: prevState[state] + 1 }));
+
   render() {
     const total = this.countTotalFeedback();
 
     return (
       <Container>
         <h1>Please leave feedbeck</h1>
-        <Button
-          onClick={() =>
-            this.setState(prevState => {
-              return {
-                good: prevState.good + 1,
-              };
-            })
-          }
-        >
-          Good
-        </Button>
-        <Button
-          onClick={() =>
-            this.setState(prevState => {
-              return {
-                neutral: prevState.neutral + 1,
-              };
-            })
-          }
-        >
-          Neutral
-        </Button>
-        <Button
-          onClick={() =>
-            this.setState(prevState => {
-              return {
-                bad: prevState.bad + 1,
-              };
-            })
-          }
-        >
-          Bad
-        </Button>
+
+        <FeedbackOptions
+          options={Object.keys(this.state)}
+          onLeaveFeedback={this.onLeaveFeedback}
+        />
 
         <h2>Statistics</h2>
 

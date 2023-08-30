@@ -1,41 +1,17 @@
 import { Button } from './Feedback.styled';
 
-export const FeedbackOptions = options => {
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <div>
-      <Button
-        onClick={() =>
-          this.setState(prevState => {
-            return {
-              good: prevState.good + 1,
-            };
-          })
-        }
-      >
-        Good
-      </Button>
-      <Button
-        onClick={() =>
-          this.setState(prevState => {
-            return {
-              neutral: prevState.neutral + 1,
-            };
-          })
-        }
-      >
-        Neutral
-      </Button>
-      <Button
-        onClick={() =>
-          this.setState(prevState => {
-            return {
-              bad: prevState.bad + 1,
-            };
-          })
-        }
-      >
-        Bad
-      </Button>
+      {options.map(option => (
+        <Button
+          key={option}
+          type="button"
+          onClick={() => onLeaveFeedback(option)}
+        >
+          {option}
+        </Button>
+      ))}
     </div>
   );
 };
